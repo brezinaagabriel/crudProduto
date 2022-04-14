@@ -1,0 +1,24 @@
+<h1>Cadastrar Usuário</h1>
+
+<form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+    <label>Email:</label>
+    <input type="text" formControlName="email"><br>
+    <div *ngIf="formCadastrar.controls['email'].touched">
+        <small *ngIf="formCadastrar.controls['email'].hasError('required') "><span style="color: red">O email é obrigatório!</span></small>
+        <small *ngIf="formCadastrar.controls['email'].hasError('email') "><span style="color: red">Email inválido!</span></small>
+    </div>
+    <label>Senha:</label>
+    <input type="password" formControlName="password"><br>
+    <div *ngIf="formCadastrar.controls['password'].touched">
+        <small *ngIf="formCadastrar.controls['password'].hasError('required') "><span style="color: red">A senha é obrigatória!</span></small>
+        <small *ngIf="formCadastrar.controls['password'].hasError('minlength') "><span style="color: red">A senha deve ter no mínimo 6 caracteres!</span></small>
+    </div>
+    <label>Cinfirmar Senha:</label>
+    <input type="password" formControlName="confirmPassword"><br>
+    <div *ngIf="formCadastrar.controls['confirmPassword'].touched">
+        <small *ngIf="formCadastrar.controls['confirmPassword'].hasError('required') "><span style="color: red">A senha é obrigatória!</span></small>
+        <small *ngIf="formCadastrar.controls['confirmPassword'].hasError('minlength') "><span style="color: red">A senha deve ter no mínimo 6 caracteres!</span></small>
+        <small *ngIf="formCadastrar.controls['confirmPassword'].value != formCadastrar.controls['password'].value"><span style="color: red">As senhas não conferem!</span></small>
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>
